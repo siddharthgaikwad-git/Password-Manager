@@ -12,7 +12,7 @@ const Manager = () => {
     const [passwordArray, setPasswordArray] = useState([])
 
     const getPasswords = async () => {
-        let req = await fetch("http://localhost:3000/")
+        let req = await fetch("https://password-manager-8ggv.onrender.com/")
         let passwords = await req.json()
         setPasswordArray(passwords)
     }
@@ -52,7 +52,7 @@ const Manager = () => {
 
             // If we are editing an existing entry, delete the old one from the DB first
             if (form.id) {
-                await fetch("http://localhost:3000/", { 
+                await fetch("https://password-manager-8ggv.onrender.com/", {
                     method: "DELETE", 
                     headers: { "Content-Type": "application/json" }, 
                     body: JSON.stringify({ id: form.id }) 
@@ -66,7 +66,7 @@ const Manager = () => {
             setPasswordArray([...passwordArray.filter(item => item.id !== form.id), passwordEntry])
             
             // Save to DB
-            await fetch("http://localhost:3000/", { 
+            await fetch("https://password-manager-8ggv.onrender.com/", { 
                 method: "POST", 
                 headers: { "Content-Type": "application/json" }, 
                 body: JSON.stringify(passwordEntry) 
@@ -94,7 +94,7 @@ const Manager = () => {
         let c = confirm("Do you really want to delete this password?")
         if (c) {
             setPasswordArray(passwordArray.filter(item => item.id !== id))
-            await fetch("http://localhost:3000/", { 
+            await fetch("https://password-manager-8ggv.onrender.com/", {
                 method: "DELETE", 
                 headers: { "Content-Type": "application/json" }, 
                 body: JSON.stringify({ id }) 
